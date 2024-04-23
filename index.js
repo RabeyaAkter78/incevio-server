@@ -25,6 +25,20 @@ async function run() {
         // Connect the client to the server	(optional starting in v4.7)
         await client.connect();
 
+        const productCollection = client.db('productsDB').collection('products');
+        const AppleProductCollection = client.db('productsDB').collection('appleProducts');
+        const dailyDiscoverProductCollection = client.db('productsDB').collection('dailyDiscoverProducts');
+        const dealOfTheDayProductCollection = client.db('productsDB').collection('dealOfTheDay');
+
+        app.get('/shopByDepartment', async (req, res) => {
+            const result = await productCollection.find().toArray([]);
+            res.send(result);
+            // console.log(result);
+
+        });
+
+
+
 
 
         // Send a ping to confirm a successful connection
@@ -36,12 +50,6 @@ async function run() {
     }
 }
 run().catch(console.dir);
-
-
-
-
-
-
 
 app.get('/', (req, res) => {
     res.send('Incevio is running')
