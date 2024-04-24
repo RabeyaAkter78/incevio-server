@@ -37,6 +37,24 @@ async function run() {
 
         });
 
+        app.get('/appleProducts', async (req, res) => {
+            const result = await AppleProductCollection.find().toArray([]);
+            res.send(result);
+        });
+
+        app.get('/dailyDiscoverProducts', async (req, res) => {
+            const result = await dailyDiscoverProductCollection.find().toArray([]);
+            res.send(result);
+        });
+
+        // Deal Of The Day:
+        app.get('/dealOfTheDay', async (req, res) => {
+            const result = await dealOfTheDayProductCollection.find().toArray([]);
+            res.send(result);
+            console.log(result);
+
+        })
+
 
 
 
